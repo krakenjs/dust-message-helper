@@ -1,0 +1,32 @@
+{
+  "name": "dust-pre-helper",
+  "version": "1.0.0",
+  "description": "A helper for runtime use of @pre tags",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aredridel/dust-pre-helper.git"
+  },
+  "keywords": [
+    "dustjs",
+    "i18n"
+  ],
+  "author": "Aria Stewart <ariastewart@paypal.com>",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/aredridel/dust-pre-helper/issues"
+  },
+  "homepage": "https://github.com/aredridel/dust-pre-helper",
+  "peerDependencies": {
+    "dustjs-helpers": "^1.3.0",
+    "dustjs-linkedin": "^2.4.2"
+  },
+  "devDependencies": {
+    "dustjs-helpers": "^1.3.0",
+    "dustjs-linkedin": "^2.4.2",
+    "tape": "^2.14.0"
+  }
+}
