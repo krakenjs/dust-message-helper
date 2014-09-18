@@ -1,3 +1,5 @@
+'use strict';
+
 var dust = require('dustjs-linkedin');
 require('dustjs-helpers');
 
