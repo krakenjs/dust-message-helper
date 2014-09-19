@@ -7,7 +7,51 @@ require('../');
 
 var messages = {
     'types.name': 'world',
-    'types.tabs4': '4tabs\t\t\t\ttab'
+    'types.tabs4': '4tabs\t\t\t\ttab',
+    'types.textQuote': '"This has quotes"',
+    'types.backslashQuote': 'I\\O',
+    'types.controlQuote': 'tab	tab',
+    'types.states': ['CA', 'MI', 'OR'],
+    'types.listQuote': [
+        '"This has quotes"',
+        'I\\O',
+        'tab	tab'
+    ],
+    'types.months': {
+        '1': '1',
+        '2': '2',
+        '3': '3'
+    },
+    'types.state': {
+        'CA': 'California',
+        'MI': 'Michigan',
+        'OR': 'Oregon'
+    },
+    'types.stooge': {
+        'Larry': '$key Fine',
+        'Moe': '$key Howard',
+        'Curly': '$key Howard',
+        'Shemp': '$key Howard'
+    },
+    'types.names': [
+        '$idx. Larry',
+        '$idx. Moe',
+        '$idx. Curly'
+    ],
+    'types.states2': {
+        'west': [ 'CA', undefined, 'OR' ],
+        'east': [ 'MI' ]
+    },
+    'types.bankRules': {
+        'BOFA': {
+            'bankInfo': 'Payment',
+            'transfer': 'Transfers'
+        },
+        'HSBC': {
+            'bankInfo': 'Foreign',
+            'transfer': 'Others'
+        }
+    }
 };
 
 test('handler', function (t) {
@@ -290,7 +334,7 @@ test('handler', function (t) {
         count = 0;
         total = testcases.length;
 
-        t.plan(total);
+        t.plan(total * 2);
 
         testcases.forEach(function (testcase) {
             var compiled = dust.compile(testcase.input, 'test');
