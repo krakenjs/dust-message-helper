@@ -143,11 +143,6 @@ test('handler', function (t) {
             expected: 'Hello: CA, MI, OR!'
         },
         {
-            it: 'should allow newlines',
-            input: 'Hello:\r\n{@pre type="content" key="types.states" sep="\r\n" /}!',
-            expected: 'Hello:\r\nCA\r\nMI\r\nOR!'
-        },
-        {
             it: 'should support the "mode=json" attribute',
             input: '{@pre type="content" key="types.states" mode="json" /}',
             expected: '["CA","MI","OR"]'
@@ -209,13 +204,13 @@ test('handler', function (t) {
         },
         {
             it: 'should support the "before" and "after" attributes',
-            input: '<ul>{@pre type=content key=types.states before="<li>" after="</li>" /}</ul>',
+            input: '<ul>{@pre type="content" key="types.states" before="<li>" after="</li>" /}</ul>',
             expected: '<ul><li>CA</li><li>MI</li><li>OR</li></ul>'
         },
         {
             it: 'should support the "before," "after," and "sep" attributes',
-            input: '<ul>{@pre type=content key=types.states before="<li>" after="</li>" sep="\r\n" /}</ul>',
-            expected: '<ul><li>CA</li>\r\n<li>MI</li>\r\n<li>OR</li></ul>'
+            input: '<ul>{@pre type="content" key="types.states" before="<li>" after="</li>" sep=" " /}</ul>',
+            expected: '<ul><li>CA</li> <li>MI</li> <li>OR</li></ul>'
         },
         {
             it: 'should replace $idx placeholders in content strings',
@@ -244,11 +239,6 @@ test('handler', function (t) {
             it: 'should support the "sep" attribute',
             input: 'Hello: {@pre type="content" key="types.state" sep=", " /}!',
             expected: 'Hello: California, Michigan, Oregon!'
-        },
-        {
-            it: 'should allow newlines',
-            input: 'Hello:\r\n{@pre type="content" key="types.state" sep="\r\n" /}!',
-            expected: 'Hello:\r\nCalifornia\r\nMichigan\r\nOregon!'
         },
         {
             it: 'should support the "mode=json" attribute',
@@ -302,13 +292,13 @@ test('handler', function (t) {
         },
         {
             it: 'should support the "before" and "after" attributes',
-            input: '<ul>{@pre type=content key=types.state before="<li>" after="</li>" /}</ul>',
+            input: '<ul>{@pre type="content" key="types.state" before="<li>" after="</li>" /}</ul>',
             expected: '<ul><li>California</li><li>Michigan</li><li>Oregon</li></ul>'
         },
         {
             it: 'should support the "before," "after," and "sep" attributes',
-            input: '<ul>{@pre type=content key=types.state before="<li>" after="</li>" sep="\r\n" /}</ul>',
-            expected: '<ul><li>California</li>\r\n<li>Michigan</li>\r\n<li>Oregon</li></ul>'
+            input: '<ul>{@pre type="content" key="types.state" before="<li>" after="</li>" sep=" " /}</ul>',
+            expected: '<ul><li>California</li> <li>Michigan</li> <li>Oregon</li></ul>'
         },
         {
             it: 'should replace $key placeholders in content strings',
