@@ -312,7 +312,7 @@ test('handler', function (t) {
         },
         {
             it: 'should support option list with attributes',
-            input: '<select>{@pre type=content key=types.months before="<option value=$key>" after="</option>" /}</select>',
+            input: '<select>{@pre type="content" key="types.months" before="<option value=$key>" after="</option>" /}</select>',
             expected: '<select><option value=1>1</option><option value=2>2</option><option value=3>3</option></select>'
         }
     ];
