@@ -329,7 +329,7 @@ test('handler', function (t) {
         testcases.forEach(function (testcase) {
             var compiled = dust.compile(testcase.input, 'test');
             dust.loadSource(compiled);
-            dust.render('test', { messages: messages }, function (err, data) {
+            dust.render('test', { intl: messages }, function (err, data) {
                 t.error(err);
 
                 t.equal(data, testcase.expected, testcase.it);
