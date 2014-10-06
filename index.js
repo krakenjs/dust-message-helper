@@ -1,56 +1,60 @@
 'use strict';
 
-var dust = require('dustjs-linkedin');
-
 var REGIDX = new RegExp('\\$idx', 'g');
 var REGKEY = new RegExp('\\$key', 'g');
 
-module.exports = dust.helpers.pre = dust.helpers.message = function message(chunk, ctx, bodies, params) {
+module.exports = {
+    registerWith: registerWith
+};
 
-    if (params.type && params.type !== 'content') {
-        return chunk.write('');
-    }
+function registerWith(dust) {
+    dust.helpers.pre = dust.helpers.message = function messageHandler(chunk, ctx, bodies, params) {
 
-    var before = params.before || '';
-    var after = params.after || '';
-    var mode = params.mode || '';
-    var sep = params.sep || '';
-
-    var value = (ctx.get(['intl', 'messages']) || ctx.get('messages') || {})[params.key] || '☃' + params.key + '☃';
-
-    if (typeof value === 'string') {
-
-        value = (mode === 'json') ? JSON.stringify(value) : (before + value + after);
-
-    } else if (typeof value === 'object' && value !== null) {
-
-        // Object or Array
-        if (mode === 'json') {
-            value = JSON.stringify(value, substitute);
-        } else if (mode === 'paired') {
-            value = transform(value, asObj(value));
-            value = JSON.stringify(value);
-        } else {
-            value = transform(value, asString(value, before, after));
-            value = value.join(sep);
+        if (params.type && params.type !== 'content') {
+            return chunk.write('');
         }
 
-    } else {
-        // number, bool, date, etc? not likely, but maybe
-        value = String(value);
-    }
+        var before = params.before || '';
+        var after = params.after || '';
+        var mode = params.mode || '';
+        var sep = params.sep || '';
 
-    /* And thus begins the ugly, possibly expensive hack to run dynamically loaded content through Dust */
-    var cacheKey = 'content for ' + ctx.templateName + ' key ' + params.key;
-    if (!dust.cache[cacheKey]) {
-        dust.loadSource(dust.compile(value, cacheKey));
-    }
-    dust.cache[cacheKey](chunk, ctx);
-    /* Here endeth the confusion, on Setting Orange, the 56th day of Bureaucracy in the YOLD 3180 */
+        var value = (ctx.get(['intl', 'messages']) || ctx.get('messages') || {})[params.key] || '☃' + params.key + '☃';
 
-    return chunk;
+        if (typeof value === 'string') {
 
-};
+            value = (mode === 'json') ? JSON.stringify(value) : (before + value + after);
+
+        } else if (typeof value === 'object' && value !== null) {
+
+            // Object or Array
+            if (mode === 'json') {
+                value = JSON.stringify(value, substitute);
+            } else if (mode === 'paired') {
+                value = transform(value, asObj(value));
+                value = JSON.stringify(value);
+            } else {
+                value = transform(value, asString(value, before, after));
+                value = value.join(sep);
+            }
+
+        } else {
+            // number, bool, date, etc? not likely, but maybe
+            value = String(value);
+        }
+
+        /* And thus begins the ugly, possibly expensive hack to run dynamically loaded content through Dust */
+        var cacheKey = 'content for ' + ctx.templateName + ' key ' + params.key;
+        if (!dust.cache[cacheKey]) {
+            dust.loadSource(dust.compile(value, cacheKey));
+        }
+        dust.cache[cacheKey](chunk, ctx);
+        /* Here endeth the confusion, on Setting Orange, the 56th day of Bureaucracy in the YOLD 3180 */
+
+        return chunk;
+
+    };
+}
 
 // Replace any $idx or $key values in the element
 function substitute(key, value) {

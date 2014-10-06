@@ -20,9 +20,6 @@
     "url": "https://github.com/aredridel/dust-pre-helper/issues"
   },
   "homepage": "https://github.com/aredridel/dust-pre-helper",
-  "peerDependencies": {
-    "dustjs-linkedin": "^2.4.2"
-  },
   "devDependencies": {
     "dustjs-linkedin": "^2.4.2",
     "tape": "^2.14.0"
