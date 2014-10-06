@@ -41,11 +41,15 @@ module.exports = dust.helpers.pre = dust.helpers.message = function message(chun
     }
 
     /* And thus begins the ugly, possibly expensive hack to run dynamically loaded content through Dust */
-    var cacheKey = 'content for ' + ctx.templateName + ' key ' + params.key;
-    if (!dust.cache[cacheKey]) {
-        dust.loadSource(dust.compile(value, cacheKey));
+    if (mode === 'json') {
+        var cacheKey = 'content for ' + ctx.templateName + ' key ' + params.key;
+        if (!dust.cache[cacheKey]) {
+            dust.loadSource(dust.compile(value, cacheKey));
+        }
+        dust.cache[cacheKey](chunk, ctx);
+    } else {
+        chunk.write(value);
     }
-    dust.cache[cacheKey](chunk, ctx);
     /* Here endeth the confusion, on Setting Orange, the 56th day of Bureaucracy in the YOLD 3180 */
 
     return chunk;
