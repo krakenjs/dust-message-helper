@@ -3,7 +3,7 @@
 var test = require('tape');
 var dust = require('dustjs-linkedin');
 
-require('../');
+require('../').registerWith(dust);
 
 var messages = {
     'types.name': 'world',
