@@ -15,7 +15,7 @@ module.exports = function (dust) {
         var mode = params.mode || '';
         var sep = params.sep || '';
 
-        var value = (ctx.get('intl.messages') || ctx.get('messages') || {})[params.key] || '☃' + params.key + '☃';
+        var value = (ctx.get('intl.messages' + '.' + params.key) || ctx.get('messages' + '.' + params.key) || {}) || '☃' + params.key + '☃';
 
         if (typeof value === 'string') {
 
