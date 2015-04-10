@@ -6,50 +6,52 @@ var dust = require('dustjs-linkedin');
 require('../').registerWith(dust);
 
 var messages = {
-    'types.name': 'world',
-    'types.tabs4': '4tabs\t\t\t\ttab',
-    'types.textQuote': '"This has quotes"',
-    'types.backslashQuote': 'I\\O',
-    'types.controlQuote': 'tab	tab',
-    'types.states': ['CA', 'MI', 'OR'],
-    'types.listQuote': [
-        '"This has quotes"',
-        'I\\O',
-        'tab	tab'
-    ],
-    'types.months': {
-        '1': '1',
-        '2': '2',
-        '3': '3'
-    },
-    'types.state': {
-        'CA': 'California',
-        'MI': 'Michigan',
-        'OR': 'Oregon'
-    },
-    'types.stooge': {
-        'Larry': '$key Fine',
-        'Moe': '$key Howard',
-        'Curly': '$key Howard',
-        'Shemp': '$key Howard'
-    },
-    'types.names': [
-        '$idx. Larry',
-        '$idx. Moe',
-        '$idx. Curly'
-    ],
-    'types.states2': {
-        'west': [ 'CA', undefined, 'OR' ],
-        'east': [ 'MI' ]
-    },
-    'types.bankRules': {
-        'BOFA': {
-            'bankInfo': 'Payment',
-            'transfer': 'Transfers'
+    types: {
+        name: 'world',
+        tabs4: '4tabs\t\t\t\ttab',
+        'textQuote': '"This has quotes"',
+        'backslashQuote': 'I\\O',
+        'controlQuote': 'tab	tab',
+        'states': ['CA', 'MI', 'OR'],
+        'listQuote': [
+            '"This has quotes"',
+            'I\\O',
+            'tab	tab'
+        ],
+        'months': {
+            '1': '1',
+            '2': '2',
+            '3': '3'
         },
-        'HSBC': {
-            'bankInfo': 'Foreign',
-            'transfer': 'Others'
+        'state': {
+            'CA': 'California',
+            'MI': 'Michigan',
+            'OR': 'Oregon'
+        },
+        'stooge': {
+            'Larry': '$key Fine',
+            'Moe': '$key Howard',
+            'Curly': '$key Howard',
+            'Shemp': '$key Howard'
+        },
+        'names': [
+            '$idx. Larry',
+            '$idx. Moe',
+            '$idx. Curly'
+        ],
+        'states2': {
+            'west': [ 'CA', undefined, 'OR' ],
+            'east': [ 'MI' ]
+        },
+        'bankRules': {
+            'BOFA': {
+                'bankInfo': 'Payment',
+                'transfer': 'Transfers'
+            },
+            'HSBC': {
+                'bankInfo': 'Foreign',
+                'transfer': 'Others'
+            }
         }
     }
 };
