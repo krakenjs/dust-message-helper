@@ -1,6 +1,6 @@
 {
   "name": "dust-message-helper",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "A helper for runtime use of @pre and @message i18n tags",
   "main": "index.js",
   "scripts": {
