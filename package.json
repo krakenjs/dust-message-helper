@@ -15,7 +15,7 @@
     "i18n"
   ],
   "author": "Aria Stewart <ariastewart@paypal.com>",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/aredridel/dust-pre-helper/issues"
   },
