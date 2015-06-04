@@ -42,10 +42,8 @@ module.exports = function (dust) {
         return chunk.map(function (chunk) {
             /* And thus begins the ugly, possibly expensive hack to run dynamically loaded content through Dust */
             var cacheKey = ctx.templateName + params.key + encodeURI(value).replace(/%/g, '_');
-            if (!dust.cache[cacheKey]) {
-                dust.loadSource(dust.compile(value, cacheKey));
-            }
-            dust.cache[cacheKey](chunk, ctx).end();
+            var tmpl = dust.cache[cacheKey] || dust.loadSource(dust.compile(value, cacheKey));
+            tmpl(chunk, ctx).end();
             /* Here endeth the confusion, on Setting Orange, the 56th day of Bureaucracy in the YOLD 3180 */
         });
     };

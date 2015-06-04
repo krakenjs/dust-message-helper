@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/aredridel/dust-pre-helper",
   "devDependencies": {
-    "dustjs-linkedin": "^2.4.2",
+    "dustjs-linkedin": "~2.7.1",
     "tape": "^2.14.0"
   }
 }
