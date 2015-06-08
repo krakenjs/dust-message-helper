@@ -1,6 +1,6 @@
 'use strict';
 
-var test = require('tape');
+var test = require('tap').test;
 var dust = require('dustjs-linkedin');
 
 require('../').registerWith(dust);
