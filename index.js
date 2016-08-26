@@ -10,12 +10,13 @@ module.exports = function (dust) {
             return chunk.write('');
         }
 
-        var before = params.before || '';
-        var after = params.after || '';
-        var mode = params.mode || '';
-        var sep = params.sep || '';
+        var before = params.before ? ctx.resolve(params.before) : '';
+        var after = params.after ? ctx.resolve(params.after) : '';
+        var mode = params.mode ? ctx.resolve(params.mode) : '';
+        var sep = params.sep ? ctx.resolve(params.sep) : '';
+        var key = ctx.resolve(params.key);
 
-        var value = ctx.get('intl.messages' + '.' + params.key) || ctx.get('messages' + '.' + params.key) || '☃' + params.key + '☃';
+        var value = ctx.get('intl.messages' + '.' + key) || ctx.get('messages' + '.' + key) || '☃' + key + '☃';
 
         if (typeof value === 'string') {
 
@@ -41,7 +42,7 @@ module.exports = function (dust) {
 
         return chunk.map(function (chunk) {
             /* And thus begins the ugly, possibly expensive hack to run dynamically loaded content through Dust */
-            var cacheKey = ctx.templateName + params.key + encodeURI(value).replace(/%/g, '_');
+            var cacheKey = ctx.templateName + key + encodeURI(value).replace(/%/g, '_');
             var tmpl = dust.cache[cacheKey] || dust.loadSource(dust.compile(value, cacheKey));
             tmpl(chunk, ctx).end();
             /* Here endeth the confusion, on Setting Orange, the 56th day of Bureaucracy in the YOLD 3180 */
