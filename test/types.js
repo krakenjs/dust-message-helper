@@ -321,7 +321,9 @@ test('handler', function (t) {
 
 
     function run(testcases, t) {
-        var count, total, file, hand;
+        var count, total, file, hand, cb;
+
+        cb = this ? this.callback : null;
 
         count = 0;
         total = testcases.length;
@@ -338,14 +340,20 @@ test('handler', function (t) {
                 count += 1;
                 if (count === total) {
                     t.end();
+
+                    if (cb)
+                        cb();
                 }
             });
         });
     }
 
+    var cb = function() {
+        t.end();
+    };
 
     t.test('basic', run.bind(null, basic));
     t.test('list', run.bind(null, list));
-    t.test('map', run.bind(null, map));
+    t.test('map', run.bind({ callback: cb }, map));
 
 });
